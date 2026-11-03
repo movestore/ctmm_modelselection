@@ -54,8 +54,8 @@ rFunction <- function(data) {
 
   xx |>
     as_tibble() |>
-    mutate(id = rep(names(models), lens), unit = rownames(xx)) |>
-    select(id, unit, low, est, high) |>
+    mutate(id = rep(names(models), lens), parameter = rownames(xx)) |>
+    select(id, parameter, low, est, high) |>
     write.csv(appArtifactPath("selected_model_estimates.csv"), row.names = FALSE)
 
   return(list(models, data))
