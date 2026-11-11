@@ -32,8 +32,10 @@ rFunction <- function(data) {
 
   write.csv(comparison, file = appArtifactPath("model_comparison.csv"), row.names = FALSE)
 
-  # Summary of the DOF for the selected model for each animal
-  m_summary <- map(models, ~ summary(.x))
+  # Summary of the selected model for each animal. units = FALSE reports every
+  # estimate in SI units (e.g. square meters, seconds) so that each parameter
+  # has the same unit for every animal.
+  m_summary <- map(models, ~ summary(.x, units = FALSE))
 
   out1 <- data.frame(
     id = names(models),

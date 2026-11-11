@@ -86,7 +86,9 @@ animal. This summary contains for each animal (row) the following columns:
 `selected_model_estimates.csv`: the parameter estimates of the selected model
 for each animal. This table contains the following columns:
   - `id`: the name of the animal.
-  - `unit`: the parameter name and its unit (see below).
+  - `unit`: the parameter name and its unit (see below). All estimates are in
+    SI units: square meters for area, seconds for τ, meters/second for speed,
+    and square meters/second for diffusion.
   - The lower (`low`) and upper (`high`) 95% confidence interval of the
     estimated parameter (`est`).
 
