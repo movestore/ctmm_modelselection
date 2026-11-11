@@ -2,12 +2,11 @@
 
 MoveApps
 
-Github repository: https://github.com/movestore/ctmm_modelselection
+GitHub repository: https://github.com/movestore/ctmm_modelselection
 
 ## Description
-This App fits continuous-time movement models to tracking data and selects the
-best model for each animal, using the function `ctmm.select()` from the
-**ctmm** package.
+Fit continuous-time movement models to tracking data and select the best model
+for each animal, using the function `ctmm.select()` from the **ctmm** package.
 
 ## Documentation
 Based on the package `ctmm`, this App fits continuous-time movement models to
@@ -22,15 +21,15 @@ subsequent Apps. The App produces several artefacts that contain summaries
 of the models that were fit and their parameter estimates.
 
 **ATTENTION**: This App can take a long time (potentially hours) to run.
-Consider pinning this App for further workflow runs so that the models do not
+Consider pinning this App for further Workflow runs so that the models do not
 need to be recomputed. Subsequent Apps that use an interactive user interface
 (e.g., *Autocorrelated Kernel Density Estimate (aKDE)* or
 *Estimate Occurrence Distribution (Kriging)*)—which can only be accessed for
-8 hours for each run of a workflow—can then be regenerated without needing
+8 hours for each run of a Workflow—can then be regenerated without needing
 to rerun the models.
 
 You can pin an App by opening the App's menu at the top right corner of the App
-and clicking *Pin to this app*.
+and clicking *Pin to this App*.
 This option is available once the first run of the App has completed.
 
 ### Application scope
@@ -121,7 +120,7 @@ home-ranging behavior.
 
 If an error occurs while fitting the models of any animal,
 the App stops and no output is produced for any animal. Please open an issue in
-the Github repository if you repeatedly encounter errors.
+the GitHub repository if you repeatedly encounter errors.
 
 ### Technical details
 - For each animal separately, an initial model is guessed automatically with
@@ -136,8 +135,14 @@ the Github repository if you repeatedly encounter errors.
   candidate models for each animal.
 - The run time increases with the number of animals and the number of locations
   per animal. The animals are fit one after the other.
-- For more detail, see the methods described in Calabrese, J. M.,
-  Fleming, C. H., & Gurarie, E. (2016). ctmm: an R package for analyzing animal
-  relocation data as a continuous-time stochastic process.
-  *Methods in Ecology and Evolution*, 7(9), 1124–1132.
-  https://doi.org/10.1111/2041-210X.12559
+
+Selecting between continuous-time movement models is described in Fleming,
+C. H., Calabrese, J. M., Mueller, T., Olson, K. A., Leimgruber, P., & Fagan,
+W. F. (2014). From fine-scale foraging to home ranges: A semivariance approach
+to identifying movement modes across spatiotemporal scales. *The American
+Naturalist*, 183(5), E154–E167. https://doi.org/10.1086/675504
+
+The `ctmm` package is described in Calabrese, J. M., Fleming, C. H., &
+Gurarie, E. (2016). ctmm: An R package for analyzing animal relocation data as
+a continuous-time stochastic process. *Methods in Ecology and Evolution*,
+7(9), 1124–1132. https://doi.org/10.1111/2041-210X.12559
