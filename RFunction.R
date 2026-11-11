@@ -24,7 +24,7 @@ rFunction <- function(data) {
         id = id,
         model = rownames(tab),
         dAICc = tab[, 1],
-        dRMSPE_m = tab[, 2],
+        dRMSPE = tab[, 2],
         DOF = tab[, 3]
       )
     }

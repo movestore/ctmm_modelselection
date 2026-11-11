@@ -60,7 +60,7 @@ for each animal, ranked by AICc. It contains the following columns:
     "Anisotropic" models allow an elliptical rather than circular home range.
   - `dAICc`: the AICc difference between this model and the selected (best)
     model for this animal.
-  - `dRMSPE_m`: the difference in root mean squared prediction error, in meters,
+  - `dRMSPE`: the difference in root mean squared prediction error, in meters,
     between this model and the model with the lowest RMSPE. Note that models may
     be ranked differently by this metric than by AICc, but AICc is used to
     select the best model.
