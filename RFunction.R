@@ -58,5 +58,7 @@ rFunction <- function(data) {
     select(id, parameter, low, est, high) |>
     write.csv(appArtifactPath("selected_model_estimates.csv"), row.names = FALSE)
 
-  return(list(models, data))
+  # List elements need names for the MoveApps output analyzer, which reads
+  # `model` and `data`. Later Apps read the elements by position.
+  list(model = models, data = data)
 }

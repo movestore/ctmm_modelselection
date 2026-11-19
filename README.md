@@ -46,8 +46,9 @@ the *Variogram* App to evaluate whether this property holds for your data.
 ### Output type
 `ctmm model with data`: a list with two elements:
 
-1. A list containing the selected `ctmm` model for each animal.
-2. The input data passed to the App (an object of type `telemetry.list`).
+1. `model`: a list containing the selected `ctmm` model for each animal.
+2. `data`: the input data passed to the App (an object of type
+   `telemetry.list`).
 
 ### Artefacts
 `model_comparison.csv` contains the comparison results for each candidate model
