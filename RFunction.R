@@ -24,7 +24,7 @@ rFunction <- function(data) {
         id = id,
         model = rownames(tab),
         dAICc = tab[, 1],
-        dRMSPE_m = tab[, 2],
+        dRMSPE = tab[, 2],
         DOF = tab[, 3]
       )
     }
@@ -32,8 +32,10 @@ rFunction <- function(data) {
 
   write.csv(comparison, file = appArtifactPath("model_comparison.csv"), row.names = FALSE)
 
-  # Summary of the DOF for the selected model for each animal
-  m_summary <- map(models, ~ summary(.x))
+  # Summary of the selected model for each animal. units = FALSE reports every
+  # estimate in SI units (e.g. square meters, seconds) so that each parameter
+  # has the same unit for every animal.
+  m_summary <- map(models, ~ summary(.x, units = FALSE))
 
   out1 <- data.frame(
     id = names(models),
@@ -52,8 +54,8 @@ rFunction <- function(data) {
 
   xx |>
     as_tibble() |>
-    mutate(id = rep(names(models), lens), unit = rownames(xx)) |>
-    select(id, unit, low, est, high) |>
+    mutate(id = rep(names(models), lens), parameter = rownames(xx)) |>
+    select(id, parameter, low, est, high) |>
     write.csv(appArtifactPath("selected_model_estimates.csv"), row.names = FALSE)
 
   return(list(models, data))

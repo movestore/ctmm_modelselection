@@ -60,7 +60,7 @@ for each animal, ranked by AICc. It contains the following columns:
     "Anisotropic" models allow an elliptical rather than circular home range.
   - `dAICc`: the AICc difference between this model and the selected (best)
     model for this animal.
-  - `dRMSPE_m`: the difference in root mean squared prediction error, in meters,
+  - `dRMSPE`: the difference in root mean squared prediction error, in meters,
     between this model and the model with the lowest RMSPE. Note that models may
     be ranked differently by this metric than by AICc, but AICc is used to
     select the best model.
@@ -86,11 +86,13 @@ animal. This summary contains for each animal (row) the following columns:
 `selected_model_estimates.csv`: the parameter estimates of the selected model
 for each animal. This table contains the following columns:
   - `id`: the name of the animal.
-  - `unit`: the parameter name and its unit (see below).
+  - `parameter`: the parameter name and its unit (see below). All estimates are
+    in SI units: square meters for area, seconds for τ, meters/second for speed,
+    and square meters/second for diffusion.
   - The lower (`low`) and upper (`high`) 95% confidence interval of the
     estimated parameter (`est`).
 
-The rows reported in `unit` are:
+The rows reported in `parameter` are:
   - `area`: the estimated home-range area.
   - `τ[position]`: the time it takes the animal to cross its home range, and
     also the time lag at which locations become time-independent (i.e. when
