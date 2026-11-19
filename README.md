@@ -21,12 +21,11 @@ subsequent Apps. The App produces several artefacts that contain summaries
 of the models that were fit and their parameter estimates.
 
 **ATTENTION**: This App can take a long time (potentially hours) to run.
-Consider pinning this App for further Workflow runs so that the models do not
-need to be recomputed. Subsequent Apps that use an interactive user interface
-(e.g., *Autocorrelated Kernel Density Estimate (aKDE)* or
-*Estimate Occurrence Distribution (Kriging)*)—which can only be accessed for
-8 hours for each run of a Workflow—can then be regenerated without needing
-to rerun the models.
+Consider pinning this App so that further Workflow runs reuse its models
+instead of fitting them again. This way, you can change the settings of
+subsequent Apps (e.g., the isopleth levels of the *Autocorrelated Kernel
+Density Estimate (aKDE)* App) and rerun them without waiting for the models
+to be refit.
 
 You can pin an App by opening the App's menu at the top right corner of the App
 and clicking *Pin to this App*.
