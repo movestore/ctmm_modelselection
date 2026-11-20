@@ -40,6 +40,10 @@ behavior.
 This App is only applicable to data that reflect range-resident behavior. Use
 the *Variogram* App to evaluate whether this property holds for your data.
 
+For data that are not range-resident, the App may succeed in fitting a model,
+but home ranges estimated from such models will have very wide confidence
+intervals and are not meaningful.
+
 ### Input type
 `ctmm::telemetry.list`
 
@@ -116,9 +120,10 @@ data themselves are returned unchanged, but the selected model for each animal
 is also provided. See **Output type** above.
 
 ### Errors and null handling
-The App will fail or take **very** long if the variograms in
-the previous step suggest that some of the tracked animals do not show
-home-ranging behavior.
+If the input data contain animals that are not range-resident, the output models
+will have no meaningful home range interpretation. Look for very large confidence
+intervals around your home range estimate to identify these cases. In some
+cases, these models may fail to fit or take a long time to achieve a fit.
 
 If an error occurs while fitting the models of any animal,
 the App stops and no output is produced for any animal. Please open an issue in
