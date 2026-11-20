@@ -3,11 +3,35 @@ library(purrr)
 library(dplyr)
 
 rFunction <- function(data) {
-  g <- lapply(data, \(x) ctmm.guess(x, interactive = FALSE))
+  # Time since `since`, for the log, e.g. "3.4 secs" or "2.1 mins"
+  elapsed <- function(since) format(round(Sys.time() - since, 1))
+  start <- Sys.time()
+  n <- length(data)
 
-  # Return all fitted models for each animal (`verbose = TRUE`) so we can
-  # provide a comparison output
-  candidates <- map2(data, g, ~ ctmm.select(.x, .y, verbose = TRUE))
+  logger.info(paste0(
+    "Fitting movement models for ", n, " animal(s). This can take a long ",
+    "time (potentially hours) for many animals or long tracks."
+  ))
+
+  # Fit the animals one after the other and log the progress of each. Return
+  # all fitted models for each animal (`verbose = TRUE`) so we can provide a
+  # comparison output.
+  candidates <- map(
+    seq_len(n),
+    function(i) {
+      id <- names(data)[i]
+      logger.info(paste0("Fitting models for animal ", i, " of ", n, " (", id, ")"))
+      animal_start <- Sys.time()
+      
+      guess <- ctmm.guess(data[[i]], interactive = FALSE)
+      cands <- ctmm.select(data[[i]], guess, verbose = TRUE)
+      
+      logger.info(paste0(id, ": selected ", names(cands)[1], " after ", elapsed(animal_start)))
+      cands
+    }
+  )
+  names(candidates) <- names(data)
+  logger.info(paste0("All models fitted after ", elapsed(start)))
 
   # Selected model for each animal
   models <- map(candidates, 1)
