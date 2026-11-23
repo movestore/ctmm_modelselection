@@ -21,12 +21,11 @@ subsequent Apps. The App produces several artefacts that contain summaries
 of the models that were fit and their parameter estimates.
 
 **ATTENTION**: This App can take a long time (potentially hours) to run.
-Consider pinning this App for further Workflow runs so that the models do not
-need to be recomputed. Subsequent Apps that use an interactive user interface
-(e.g., *Autocorrelated Kernel Density Estimate (aKDE)* or
-*Estimate Occurrence Distribution (Kriging)*)—which can only be accessed for
-8 hours for each run of a Workflow—can then be regenerated without needing
-to rerun the models.
+Consider pinning this App so that further Workflow runs reuse its models
+instead of fitting them again. This way, you can change the settings of
+subsequent Apps (e.g., the isopleth levels of the *Autocorrelated Kernel
+Density Estimate (aKDE)* App) and rerun them without waiting for the models
+to be refit.
 
 You can pin an App by opening the App's menu at the top right corner of the App
 and clicking *Pin to this App*.
@@ -41,14 +40,19 @@ behavior.
 This App is only applicable to data that reflect range-resident behavior. Use
 the *Variogram* App to evaluate whether this property holds for your data.
 
+For data that are not range-resident, the App may succeed in fitting a model,
+but home ranges estimated from such models will have very wide confidence
+intervals and are not meaningful.
+
 ### Input type
 `ctmm::telemetry.list`
 
 ### Output type
 `ctmm model with data`: a list with two elements:
 
-1. A list containing the selected `ctmm` model for each animal.
-2. The input data passed to the App (an object of type `telemetry.list`).
+1. `model`: a list containing the selected `ctmm` model for each animal.
+2. `data`: the input data passed to the App (an object of type
+   `telemetry.list`).
 
 ### Artefacts
 `model_comparison.csv` contains the comparison results for each candidate model
@@ -116,9 +120,10 @@ data themselves are returned unchanged, but the selected model for each animal
 is also provided. See **Output type** above.
 
 ### Errors and null handling
-The App will fail or take **very** long if the variograms in
-the previous step suggest that some of the tracked animals do not show
-home-ranging behavior.
+If the input data contain animals that are not range-resident, the output models
+will have no meaningful home range interpretation. Look for very large confidence
+intervals around your home range estimate to identify these cases. In some
+cases, these models may fail to fit or take a long time to achieve a fit.
 
 If an error occurs while fitting the models of any animal,
 the App stops and no output is produced for any animal. Please open an issue in
